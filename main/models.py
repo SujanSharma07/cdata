@@ -17,3 +17,7 @@ class Registered(models.Model):
     # finally, your phone number field
     mobile = models.CharField(validators=[phone_regex], max_length=10,
                               null=True, blank=True, unique=True)
+
+
+class wifipassword(models.Model):
+    password = models.CharField(max_length=100)

@@ -11,5 +11,7 @@ def home(request):
         form = RegForm(request.POST)
         if form.is_valid():
             form.save()
+            success = 1
+            wifi = wifipassword.objects.all().first()
             messages.success(request, 'Registration Successfull')
     return render(request, 'home.html', locals())
