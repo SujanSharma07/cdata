@@ -12,6 +12,6 @@ def home(request):
         if form.is_valid():
             form.save()
             success = 1
-            wifi = wifipassword.objects.all().first()
+            wifi = wifipassword.objects.all().first().password
             messages.success(request, 'Registration Successfull')
     return render(request, 'home.html', locals())

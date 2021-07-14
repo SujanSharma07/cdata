@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
     <title>Registration</title>
 
 
@@ -293,13 +293,121 @@
                 transform: translateX(0px);
             }
         }
+
+
+
+
+
+
+
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100%;
+        }
+
+        body,
+        div,
+        h1,
+        form,
+        input,
+        p {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 16px;
+            color: #666;
+        }
+
+        h1 {
+            padding: 10px 0;
+            font-size: 32px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        hr {
+            color: #a9a9a9;
+            opacity: 0.3;
+        }
+
+        .main-block {
+            max-width: 340px;
+            min-height: 460px;
+            padding: 10px 0;
+            margin: auto;
+            border-radius: 5px;
+            border: solid 1px #ccc;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, .31);
+            background: #ebebeb;
+        }
+
+        form {
+            margin: 0 30px;
+        }
+
+
+
+
+        label#icon {
+            margin: 0;
+            border-radius: 5px 0 0 5px;
+        }
+
+
+
+        input[type=text],
+        input[type=number] {
+            width: calc(100% - 50px);
+            height: 38px;
+            margin: 13px 0 0 -5px;
+            padding-left: 10px;
+            border-radius: 0 5px 5px 0;
+            border: solid 1px #cbc9c9;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+            background: #fff;
+        }
+
+
+        #icon {
+            display: inline-block;
+            padding: 9.3px 15px;
+            box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
+            background: #1c87c9;
+            color: #fff;
+            text-align: center;
+        }
+
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 0;
+            margin: 10px auto;
+            border-radius: 5px;
+            border: none;
+            background: #1c87c9;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        button:hover {
+            background: #26a9e0;
+        }
     </style>
 </head>
 
 <body>
-
-
-
 
 
 
@@ -362,30 +470,48 @@
                     <div class="formbg">
                         <div class="formbg-inner padding-horizontal--48">
                             <span class="padding-bottom--15">Fill the following details to register</span>
-                            {% if messages %}
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {% for message in messages %}
-                                <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
-                                    {% endfor %} <button type="button" class="close" data-dismiss="alert"
-                                        aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                            </div>
 
-                            {% endif %}
                             {% if success %}
                             <h1 style='color:green'>Wifi Password: {{wifi}}</h1>
                             {% else %}
+
+
+
                             <form method="post">
                                 {% csrf_token %}
-                                {{form}}
-                                <input type="checkbox" class='m-1' required>
+                                {% if form.errors %}
+                                {% for field in form %}
+                                {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                                {% endfor %}
+                                {% endfor %}
+
+                                {% endif %}
+                                <hr>
+                                <label id="icon" for="name"><i class="fas fa-user-check"></i></label>
+                                {{form.name}}
+
+
+                                <label id="icon" for="name"><i class="fas fa-briefcase"></i></i></label>
+                                {{form.profession}}
+
+
+                                <label id="icon" for="name"><i class="far fa-address-book"></i></label>
+
+                                {{form.mobile}}
+
+
+
+                                <input type="checkbox" class="m-1" required="">
                                 Here By, I
                                 agree on
                                 sharing
                                 my above details
                                 <br>
-                                <button type="submit" class="btn btn-sm btn-primary m-3">Submit</button>
+                                <hr>
+                                <button type="submit">Submit</button>
                             </form>
                             {% endif %}
                         </div>
@@ -395,6 +521,12 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
 
 
     <!-- Optional JavaScript -->
